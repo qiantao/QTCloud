@@ -1,0 +1,9 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: ORDERSERVER
+eureka:
+  client:
+    service-url:  # eureka?????
+      defaultZone:  http://localhost:9000/eureka/

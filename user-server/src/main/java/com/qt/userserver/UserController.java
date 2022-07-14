@@ -1,5 +1,7 @@
 package com.qt.userserver;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCollapser;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +19,13 @@ public class UserController {
     @Autowired
     private OrderFeginService orderFeginService;
     @GetMapping("/get")
+    @HystrixCommand(fallbackMethod = "fallbackMethod")
     public String get(@RequestParam("id") Long id){
         return "这是userController"+id;
+    }
+
+    public String fallbackMethod(Long id){
+        return "这是fallbackMethod"+id;
     }
 
     @GetMapping("/getOrder")

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("USERSERVER")
 public interface UserFeginService {
 
-    @RequestMapping("/order/get")
+    @RequestMapping("/user/get")
     String get(@RequestParam("id") Long id);
 
 
